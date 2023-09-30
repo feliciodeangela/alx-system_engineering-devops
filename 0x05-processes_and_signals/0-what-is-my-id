@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-pggrep my_process
+#Get it's own PID
+echo $$
