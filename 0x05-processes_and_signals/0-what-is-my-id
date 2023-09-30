@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+pggrep my_process
