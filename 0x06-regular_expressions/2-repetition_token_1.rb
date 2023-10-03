@@ -1,2 +1,6 @@
 #!/usr/bin/env ruby
-ARGV[0] =~ /hbt?n/
+mt = ARGV[0].scan(/hbt?n/)
+mt.each do |match|
+  print match
+end
+puts
