@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-#Get it's own PID
-echo $$
