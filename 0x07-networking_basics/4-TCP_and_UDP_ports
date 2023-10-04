@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Display PID and name of the program of each running socket
+netstat -pl
