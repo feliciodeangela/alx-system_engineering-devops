@@ -1,3 +1,4 @@
+# Creates a file in the /tmp directory
 exec { 'echo > school':
   command => '/usr/bin/echo "I love Puppet" > /tmp/school'
 }
