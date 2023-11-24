@@ -1,9 +1,11 @@
-$pth = '/tmp/school'
+exec { 'echo > school':
+  command => '/usr/bin/echo "I love Puppet" > /tmp/school'
+}
 
-file { $pth:
-  ensure  => 'directory',
+file { '/tmp/school':
+  ensure  => 'present',
   owner   => 'www-data',
   group   => 'www-data',
   mode    => '0744',
-  content => 'I Love Puppet'
+  require => Exec['echo > school']
 }
