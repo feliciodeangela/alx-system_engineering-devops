@@ -3,6 +3,6 @@ file { 'Turn off passwd auth':
   content => 'PasswordAthentication no'
 }
 file { 'Declare identity file':
-  path => '/etc/ssh/config',
+  path    => '/etc/ssh/config',
   content => 'IdentityFile ~/.ssh/school'
 }
