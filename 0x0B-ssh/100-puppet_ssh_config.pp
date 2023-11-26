@@ -1,8 +1,6 @@
-file { 'Turn off passwd auth':
-  path    => '/etc/ssh/config',
-  content => 'PasswordAthentication no'
+exec { 'Turn off passwd auth':
+  command => '/usr/bin/echo "PasswordAthentication no" >> /etc/ssh/ssh_config'
 }
-file { 'Declare identity file':
-  path    => '/etc/ssh/config',
-  content => 'IdentityFile ~/.ssh/school'
+exec { 'Declare identity file':
+  command => '/usr/bin/echo "IdentityFile ~/.ssh/school" >> /etc/ssh/ssh_config'
 }
