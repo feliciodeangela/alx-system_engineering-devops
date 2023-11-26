@@ -1,11 +1,11 @@
 file { 'Turn off passwd auth':
   ensure  => 'present',
-  content => 'PasswordAthentication no',
+  line    => 'PasswordAthentication no',
   path    => '/etc/ssh/ssh_config'
 }
 file { 'Declare identity file':
   ensure  => 'present',
-  content => 'IdentityFile ~/.ssh/school',
+  line    => 'IdentityFile ~/.ssh/school',
   path    => '/etc/ssh/ssh_config'
 }
 # exec { 'Turn off passwd auth':
