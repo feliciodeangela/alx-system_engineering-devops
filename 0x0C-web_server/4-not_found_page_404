@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Page not found
+to_find="
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+"
+to_add="
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+    error_page 404 /404.html;
+    location /404 {
+      root /etc/nginx/html;
+      internal;
+    }
+"
+touch /etc/nginx/html/404.html
+echo "Ceci n'est pas une page" | sudo tee /etc/nginx/html/404.html
+sed -i "s/$to_find/$to_add/g"
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+nginx -t
+service nginx reload
