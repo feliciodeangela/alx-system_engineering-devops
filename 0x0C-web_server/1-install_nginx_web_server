@@ -7,5 +7,4 @@ ufw allow 80
 ufw allow 22
 echo "Hello World!" | tee /var/www/html/index.html
 nginx -t
-systemctl restart nginx
-systemctl reload nginx
+service nginx restart
