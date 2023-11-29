@@ -3,14 +3,9 @@
 apt-get -y update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
-# ufw enable
-mkdir -p /var/www/testsite.com/html
-echo -e '<html><head>Welcome to testsite</head><body>testsite.com server block</body></html>' > /var/www/testsite.com/html/index.html
-cp /etc/nginx/sites-available/default /etc/nginx/sites-available/testsite.com
-sed -i 's/ default_server//g' /etc/nginx/sites-available/testsite.com
-sed -i 's/root \/var\/www/html/root \/var\/www\/testsite.com\/html/g' /etc/nginx/sites-available/testsite.com
-sed -i 's/server_name _/server_name testsite.com www.testsite.com/g' /etc/nginx/sites-available/testsite.com
-ln -s /etc/nginx/sites-available/testsite.com /etc/nginx/sites-enabled/
+ufw allow 80
+ufw allow 22
+echo "Hello World!" | tee /var/www/html/index.html
 nginx -t
 systemctl restart nginx
 systemctl reload nginx
