@@ -15,9 +15,9 @@ to_add="
       internal;
     }
 "
-touch /etc/nginx/html/404.html
+sudo touch /etc/nginx/html/404.html
 echo "Ceci n'est pas une page" | sudo tee /etc/nginx/html/404.html
-sed -i "s/$to_find/$to_add/g"
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-nginx -t
-service nginx reload
+sudo sed -i "s/$to_find/$to_add/g"
+sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo service nginx reload
