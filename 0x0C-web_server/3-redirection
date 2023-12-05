@@ -7,6 +7,6 @@ ufw allow 80
 ufw allow 22
 echo "Hello World!" | tee /var/www/html/index.html
 cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bu
-sed -i 's/\tlocation \/ {\n\t/\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\t}\n\tlocation \/ {\n\t/g' /etc/nginx/sites-available/default
+sed -i 's/server_name _;/server_name _;\n\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\t}/g' /etc/nginx/sites-available/default
 nginx -t
-service nginx restart
+service nginx reload
