@@ -1,23 +1,15 @@
 #!/usr/bin/env bash
-# Page not found
-to_find="
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-"
-to_add="
-    location /redirect_me {
-        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-    }
-    error_page 404 /404.html;
-    location /404 {
-      root /etc/nginx/html;
-      internal;
-    }
-"
-sudo touch /etc/nginx/html/404.html
-echo "Ceci n'est pas une page" | sudo tee /etc/nginx/html/404.html
-sudo sed -i "s/$to_find/$to_add/g"
-sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo service nginx reload
+# 404 page
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+ufw allow 80
+ufw allow 22
+echo "Hello World!" | tee /var/www/html/index.html
+cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bu
+touch /var/www/html/404.html
+echo -e "Ceci n'est pas une page\n" > /var/www/html/404.html
+#echo -e 'server {\n\tlisten 80;\n\terror_page 404 /404.hml;\n\tlocation = /404.html {\n\t\troot /var/www/html/;\n\t\tinternal;\n\t}\n}' >> /etc/nginx/sites-available/default
+sed -i 's/server_name _;/server_name _;\n\n\terror_page 404 /404.hml;\n\tlocation = /404.html {\n\t\troot /var/www/html/;\n\t\tinternal;\n\t}\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\t}/g' /etc/nginx/sites-available/default
+nginx -t
+service nginx reload
