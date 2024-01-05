@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Install ngnix and initial config
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+ufw allow 80
+ufw allow 22
+echo "Hello World!" | tee /var/www/html/index.html
+sed -i "s/server_name _;/server_name _;\n\tadd_header X-Served-By web-02;\n/g" /etc/nginx/sites-available/default
+nginx -t
+service nginx restart

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Return a test page from the container
-ServerName 127.0.0.1
+ServerName localhost
 service apache2 reload
