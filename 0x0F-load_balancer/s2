@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Connect to my server using a private key
+# betty
+ssh -i ~/ALX/alx-system_engineering-devops/0x0F-load_balancer/school ubuntu@100.24.205.214
