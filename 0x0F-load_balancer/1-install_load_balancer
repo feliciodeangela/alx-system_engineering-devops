@@ -6,6 +6,12 @@ add-apt-repository ppa:vbernat/haproxy-2.8 -y
 apt-get install haproxy=2.8.\* -y
 echo 'ENABLED=1' >> /etc/default/haproxy
 cp -a /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bu
-echo -e '\nfrontend http-entry\n    bind *:80\n    default_backend bcknd\n' >> /etc/haproxy/haproxy.cfg
-echo -e 'backend bcknd\n    balance roundrobin\n    server 156051-web-01 3.80.19.117:80 check\n    server 156051-web-02 100.24.205.214:80 check\n' >> /etc/haproxy/haproxy.cfg
+echo '' >> /etc/haproxy/haproxy.cfg
+echo 'frontend http-entry' >> /etc/haproxy/haproxy.cfg
+echo '    bind *:80' >> /etc/haproxy/haproxy.cfg
+echo '    default_backend bcknd' >> /etc/haproxy/haproxy.cfg
+echo 'backend bcknd' >> /etc/haproxy/haproxy.cfg
+echo '    balance roundrobin' >> /etc/haproxy/haproxy.cfg
+echo '    server 156051-web-01 3.80.19.117:80 check' >> /etc/haproxy/haproxy.cfg
+echo '    server 156051-web-02 100.24.205.214:80 check' >> /etc/haproxy/haproxy.cfg
 service haproxy restart
