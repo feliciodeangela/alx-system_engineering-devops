@@ -9,7 +9,7 @@ ufw allow 80
 ufw allow 22
 echo "Hello World!" > /var/www/html/index.html
 touch /var/www/html/404.html
-echo -e "Ceci n'est un page\n" > /var/www/html/404.html
+echo -e "Ceci n'est pas une page\n" > /var/www/html/404.html
 cp /etc/nginx/sites-available/default /etc/nginx/sites-available/default.bu
 sed -i 's/server_name _;/server_name _;\n\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\t}\n/g' /etc/nginx/sites-available/default
 sed -i 's/server_name _;/server_name _;\n\n\terror_page 404 \/404.html;\n\n\tlocation = \/404.html {\n\t\tinternal;\n\t}\n/g' /etc/nginx/sites-available/default
