@@ -4,14 +4,20 @@ apt update -y
 apt-get install --no-install-recommends software-properties-common -y
 add-apt-repository ppa:vbernat/haproxy-2.8 -y
 apt-get install haproxy=2.8.\* -y
+apt-get install ufw -y
+echo 'y' | ufw enable
+ufw allow 80
+ufw allow 443
+ufw allow 22
 echo 'ENABLED=1' >> /etc/default/haproxy
 cp -a /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bu
 echo '' >> /etc/haproxy/haproxy.cfg
 echo 'frontend http-entry' >> /etc/haproxy/haproxy.cfg
-echo '    bind :80' >> /etc/haproxy/haproxy.cfg
+echo '    bind *:80' >> /etc/haproxy/haproxy.cfg
 echo '    default_backend bcknd' >> /etc/haproxy/haproxy.cfg
+echo '' >> /etc/haproxy/haproxy.cfg
 echo 'backend bcknd' >> /etc/haproxy/haproxy.cfg
 echo '    balance roundrobin' >> /etc/haproxy/haproxy.cfg
-echo '    server 156051-web-01 3.80.19.117:80 check' >> /etc/haproxy/haproxy.cfg
+echo '    server 156051-web-01 100.25.180.71:80 check' >> /etc/haproxy/haproxy.cfg
 echo '    server 156051-web-02 100.24.205.214:80 check' >> /etc/haproxy/haproxy.cfg
 service haproxy restart
