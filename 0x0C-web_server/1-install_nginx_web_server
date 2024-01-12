@@ -3,10 +3,10 @@
 apt-get -y update
 apt-get -y install nginx
 apt-get -y install ufw
-ufw enable
+ufw --force enable
 ufw allow 'Nginx HTTP'
 ufw allow 80
 ufw allow 22
-echo "Hello World!" | tee /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
 nginx -t
 service nginx restart
