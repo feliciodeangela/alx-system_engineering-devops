@@ -18,6 +18,6 @@ echo '    default_backend bcknd' >> /etc/haproxy/haproxy.cfg
 echo '' >> /etc/haproxy/haproxy.cfg
 echo 'backend bcknd' >> /etc/haproxy/haproxy.cfg
 echo '    balance roundrobin' >> /etc/haproxy/haproxy.cfg
-echo '    server 156051-web-01 100.25.180.71:80 check' >> /etc/haproxy/haproxy.cfg
-echo '    server 156051-web-02 100.24.205.214:80 check' >> /etc/haproxy/haproxy.cfg
+echo '    server web-01 100.25.180.71:80 check' >> /etc/haproxy/haproxy.cfg
+echo '    server web-02 100.24.205.214:80 check' >> /etc/haproxy/haproxy.cfg
 service haproxy restart
